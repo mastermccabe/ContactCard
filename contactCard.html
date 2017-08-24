@@ -21,29 +21,31 @@ Create a blank table which has First Name, Last Name, Email and Contact Number a
       $('#user_form').submit(function(event) {
         var form = $(this);
 
-        var html = '<div class = "contact-card"><div class="card-front">';
+        var html = '<div class="contact-card"><div class="card-front">';
         html += '<h1>' + $('#user_firstname').val() + '</h1>';
         html += '<h1>' + $('#user_lastname').val() + '</h2>';
         html += '</div>';
+        //     closing div card-front, opening card back - within contact card
         $('.card-container').append(html);
 
-        var back = '<div class = "card-back">';
-        back += '<p>' + $('#user_desc').val() + '</p></div></div>';
-        $('.card-back').append(description);
-        // // var back = '<div class = "card-back"><p>'
-        // var description = '<p>' + $('#user_desc').val() + '</p></div></div>';
-        // // var backcard = back + description;
-
-        form[0].reset();
-
         event.preventDefault()
+        var back = '<div class = "card-back"><p>' + $('#user_desc').val() + '</p></div></div>';
+        $('.card-front').append(back);
+        event.preventDefault()
+        form[0].reset();
+        event.preventDefault()
+
+
+        $('.card-front').click(function() {
+          $('.card-front').hide();
+        })
+        // event.preventDefault()
         // above needed to show submissions
-      });
-    });
-    $(document).on(function() {
-      $('.contact-card').hover(function() {
-        $('.card-front').css().hide();
-        $('.card-back').css().show();
+
+
+
+        // event.preventDefault()
+        // above needed to show submissions
       });
     });
   </script>
@@ -69,8 +71,11 @@ Create a blank table which has First Name, Last Name, Email and Contact Number a
     .contact-card {
       display: inline-block;
       border-style: solid;
+      vertical-align: top;
       height: auto;
       margin: 10px;
+      width: 300px;
+      height: 200px;
       padding: 10px;
     }
 
@@ -80,11 +85,11 @@ Create a blank table which has First Name, Last Name, Email and Contact Number a
     }
 
     .card-front {
-      display: inline-block;
+      /*display: inline-block;*/
     }
 
     .card-back {
-      /*display: none;*/
+      display: none;
     }
     /*.user-card {
       display: inline-block;
@@ -170,16 +175,16 @@ Create a blank table which has First Name, Last Name, Email and Contact Number a
 
   <!-- cards below here -->
   <div class='card-container'>
-    <!-- <div class="contact-card">
+    <div class="contact-card">
       <div class="card-front">
-
+        <h1> Joe <br><br> Schnoe</h1>
       </div>
 
       <div class="card-back">
-
+        <p>im just your average guy</p>
       </div>
 
-    </div>-->
+    </div>
   </div>
 
 </body>
