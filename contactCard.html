@@ -1,5 +1,196 @@
-Contact Card Note: Upload your work in GitHub and allow your collaborators to add/suggest new features for your work. You are going to design a contact card page. The user should be able to input contacts to the page. Using the techniques demonstrated
+<!-- Contact Card Note: Upload your work in GitHub and allow your collaborators to add/suggest new features for your work. You are going to design a contact card page. The user should be able to input contacts to the page. Using the techniques demonstrated
 in the videos, you must use jQuery to append new data to the page and make the content interactive. Remember, the content you are making is dynamic, so be sure to attach your handlers appropriately. NOTE: we recommend using $(document).on("click", ".btn")
 for this assignment as opposed to $(".btn").click() http://s3.amazonaws.com/General_V88/boomyeah/company_209/chapter_2194/handouts/chapter2194_1704_mockup.png GitHub is a social network hub for programmers. You can look at what other programmers are working
 on, check their code and make suggestions or changes. You may share projects you are working on and collaborate with other programmers for updates or additional features. Upload your work for this exercise on GitHub and ask some of your cohort mates or
-other programmers to peruse your code and suggest changes/updates. Do the same thing for your cohort mates' work.
+other programmers to peruse your code and suggest changes/updates. Do the same thing for your cohort mates' work. -->
+
+
+<!DOCTYPE html>
+<!--
+Create a blank table which has First Name, Last Name, Email and Contact Number as table headings. Have a form at the bottom which will be used to append items to the table. Make sure that each form field appends to its proper row/column in the table.
+-->
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Users2
+  </title>
+  <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#user_form').submit(function(event) {
+        // ref to form
+        var form = $(this);
+
+        // Below creates and html element
+        var html = '<div class = "user-card"><h1>';
+        html += $('#user_firstname').val() + '</h1>';
+        html += $('#user_lastname').val() + '</h1></<div>';
+        // html += '<td>' + $('#user_email').val() + '</td>';
+
+        $('.card-front').append(html);
+
+
+
+        var desc = '<p>';
+        desc += $('#user_desc').val() + '</p>';
+        desc += '</div>';
+        $('.card-back').append(html);
+
+        // Below resets form after submitting
+        form[0].reset();
+
+        event.preventDefault()
+        // above needed to show submissions
+      });
+    });
+    $(document).on(function() {
+      $('.contact-card').hover(function() {
+        $('.card-front').css().hide();
+        $('.card-back').css().show();
+      });
+    });
+  </script>
+
+  <style>
+    body {
+      width: 950px;
+    }
+
+    label {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 7px;
+      width: 300px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-card {
+      display: inline-block;
+
+      height: 300px;
+      margin: 10px;
+      padding: 10px;
+    }
+
+    .tablesorter {
+      width: 300px;
+      display: none;
+    }
+
+    .card-front {
+      display: inline-block;
+    }
+
+    .card-back {
+      display: none;
+    }
+
+    .user-card {
+      display: inline-block;
+      border-style: solid;
+      height: 300px;
+      width: 200px;
+      padding: 10px;
+      margin: 10px;
+    }
+
+    .card-container {
+      width: 950px;
+      display: inline-block;
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+
+  <table id="myTable" class="tablesorter">
+
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <!-- <th>Email</th> -->
+        <th>Description</th>
+      </tr>
+    </thead>
+    <!--
+    <div class="users-body">
+
+      <tr>
+        <td>John</td>
+        <td>Smith</td>
+
+        <td>12345678</td>
+      </tr>
+
+    </div>
+ -->
+
+  </table>
+
+  <h1> Add Users </h1>
+  <hr>
+
+  <form id="user_form">
+
+    <div class="form-group">
+
+      <label>First Name:</label>
+      <input type="text" id="user_firstname" name="user_firstname" placeholder="First Name">
+
+      <!-- </div>
+
+    <div class="form-group"> -->
+
+      <label>Last Name:</label>
+      <input type="text" id="user_lastname" name="user_lastname" placeholder="Last Name">
+
+    </div>
+
+    <!-- <div class="form-group">
+
+      <label>Email:</label>
+      <input type="email" id="user_email" name="user_email" placeholder="Email">
+
+    </div> -->
+
+    <div class="form-group">
+
+      <label>Description</label>
+      <input type="text" id="user_desc" name="user_desc" placeholder="Description">
+
+    </div>
+
+    <div class="form-group">
+
+      <button id="submit">Submit</button>
+
+    </div>
+
+  </form>
+  <div class='card-container'>
+    <div class="contact-card">
+      <div class="card-front">
+
+      </div>
+
+      <div class="card-back">
+        <p>test2</p>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
