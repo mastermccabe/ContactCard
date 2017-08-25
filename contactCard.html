@@ -17,37 +17,42 @@ Create a blank table which has First Name, Last Name, Email and Contact Number a
   <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
 
   <script type="text/javascript">
-    $(document).ready(function() {
-      $('#user_form').submit(function(event) {
+
+    $(document).ready(function(){
+
+      $('#user_form').submit(function(event){
+
         var form = $(this);
 
-        var html = '<div class="contact-card"><div class="card-front">';
-        html += '<h1>' + $('#user_firstname').val() + '</h1>';
-        html += '<h1>' + $('#user_lastname').val() + '</h2>';
+        var html = '<div class="contact-card">';
+          html += '<div class="card-inner">';
+            html += '<h1>' + $('#user_firstname').val() + '</h1>';
+            html += '<h1>' + $('#user_lastname').val() + '</h2>';
+          html += '</div>';
+          html += '<div class = "card-inner hide"><p>' + $('#user_desc').val() + '</p></div></div>';
         html += '</div>';
-        //     closing div card-front, opening card back - within contact card
+
         $('.card-container').append(html);
 
-        event.preventDefault()
-        var back = '<div class = "card-back"><p>' + $('#user_desc').val() + '</p></div></div>';
-        $('.card-front').append(back);
-        event.preventDefault()
         form[0].reset();
+
+        $('#user_firstname').focus();
+
         event.preventDefault()
 
-
-        $('.card-front').click(function() {
-          $('.card-front').hide();
-        })
-        // event.preventDefault()
-        // above needed to show submissions
-
-
-
-        // event.preventDefault()
-        // above needed to show submissions
       });
+
     });
+
+    // You must use $(document).on('click','.contact-card',function(){}); for dynamically added content
+    $(document).on('click','.contact-card',function(){
+
+      var card = $(this);
+
+      card.find('.card-inner').toggle();
+
+    });
+
   </script>
 
   <style>
@@ -57,6 +62,10 @@ Create a blank table which has First Name, Last Name, Email and Contact Number a
 
     label {
       display: block;
+    }
+
+    .hide {
+      display: none;
     }
 
     .form-group {
@@ -83,22 +92,6 @@ Create a blank table which has First Name, Last Name, Email and Contact Number a
       width: 300px;
       display: none;
     }
-
-    .card-front {
-      /*display: inline-block;*/
-    }
-
-    .card-back {
-      display: none;
-    }
-    /*.user-card {
-      display: inline-block;
-      border-style: solid;
-      height: 300px;
-      width: 200px;
-      padding: 10px;
-      margin: 10px;
-    }*/
 
     .card-container {
       width: 950px;
@@ -149,11 +142,11 @@ Create a blank table which has First Name, Last Name, Email and Contact Number a
     <div class="form-group">
 
       <label>First Name:</label>
-      <input type="text" id="user_firstname" name="user_firstname" placeholder="First Name">
+      <input required type="text" id="user_firstname" name="user_firstname" placeholder="First Name">
 
 
       <label>Last Name:</label>
-      <input type="text" id="user_lastname" name="user_lastname" placeholder="Last Name">
+      <input required type="text" id="user_lastname" name="user_lastname" placeholder="Last Name">
 
     </div>
 
@@ -161,7 +154,7 @@ Create a blank table which has First Name, Last Name, Email and Contact Number a
     <div class="form-group">
 
       <label>Description</label>
-      <input type="text" id="user_desc" name="user_desc" placeholder="Description">
+      <textarea required rows="6" id="user_desc" name="user_desc" placeholder="Description"></textarea>
 
     </div>
 
@@ -175,16 +168,19 @@ Create a blank table which has First Name, Last Name, Email and Contact Number a
 
   <!-- cards below here -->
   <div class='card-container'>
-    <div class="contact-card">
-      <div class="card-front">
+
+    <!-- <div class="contact-card">
+
+      <div class="card-inner">
         <h1> Joe <br><br> Schnoe</h1>
       </div>
 
-      <div class="card-back">
+      <div class="card-inner hide">
         <p>im just your average guy</p>
       </div>
 
-    </div>
+    </div> -->
+
   </div>
 
 </body>
